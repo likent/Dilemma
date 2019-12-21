@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Dilemma</string>
+    <string name="choose_with">\u000D\nchoose with other people</string>
+    <string name="settings">Settings</string>
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
+    <string name="photo">Photo</string>
+    <string name="edit">Edit</string>
+    <string name="which">Which</string>
+    <string name="one">one</string>
+    <string name="dillemas_asked">Dillemas asked: </string>
+    <string name="dillemas_answered">Dillemas answered: </string>
+    <string name="connect_via_facebook">Connect via Facebook</string>
+    <string name="log_out">Log out</string>
+    <string name="statistics">Statistics</string>
+    <string name="test_user_name">Sarah Lowrance</string>
+    <string name="edit_name">Edit name</string>
+</resources>
