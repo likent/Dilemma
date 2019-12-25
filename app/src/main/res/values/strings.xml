@@ -25,4 +25,5 @@
     <string name="btn_keyboard_description">Open keyboard</string>
     <string name="publish_text">Publish</string>
     <string name="choose_type_text">Choose type:</string>
+    <string name="add_dilemma_text">Add dilemma</string>
 </resources>

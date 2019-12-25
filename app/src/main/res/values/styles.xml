@@ -77,8 +77,11 @@
     </style>
 
     <style name="setting_dillema_text" parent="rounded_text">
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">270dp</item>
         <item name="android:paddingLeft">12dp</item>
-        <item name="android:gravity">left</item>
+        <item name="android:gravity">center_vertical</item>
+
     </style>
 
     <style name="create_dilemma_btns">
