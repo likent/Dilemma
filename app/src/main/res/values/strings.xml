@@ -15,4 +15,15 @@
     <string name="statistics">Statistics</string>
     <string name="test_user_name">Sarah Lowrance</string>
     <string name="edit_name">Edit name</string>
+    <string name="btn_back_name"><![CDATA[< Back]]></string>
+    <string name="btn_yes_no_text">yes/no</string>
+    <string name="add_image_text">Add image...</string>
+    <string name="add_comment">Add comment...</string>
+    <string name="btn_several_variants_text">several variants</string>
+    <string name="btn_image_text">Image</string>
+    <string name="btn_text_text">Text</string>
+    <string name="btn_keyboard_description">Open keyboard</string>
+    <string name="publish_text">Publish</string>
+    <string name="choose_type_text">Choose type:</string>
+    <string name="add_dilemma_text">Add dilemma</string>
 </resources>

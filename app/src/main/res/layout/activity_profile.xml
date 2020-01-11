@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient">
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/dilemma_lable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/image_round_tint"
+        app:layout_constraintBottom_toBottomOf="@+id/img_profile"
+        app:layout_constraintEnd_toEndOf="@+id/img_profile"
+        app:layout_constraintStart_toStartOf="@+id/img_profile"
+        app:layout_constraintTop_toTopOf="@+id/img_profile" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_profile"
+        android:layout_width="86dp"
+        android:layout_height="86dp"
+        android:layout_marginStart="77dp"
+        android:layout_marginTop="74dp"
+        android:layout_marginEnd="157dp"
+        android:layout_marginBottom="480dp"
+        android:src="@drawable/image_25"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        />
+
+    <Button
+        android:id="@+id/btn_profile_addDilemma"
+        style="@style/create_dilemma_btns"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="58dp"
+        android:gravity="end|center_vertical"
+        android:paddingRight="6dp"
+        android:text="@string/add_dilemma_text"
+        android:textSize="16sp"
+        android:translationZ="-3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintStart_toStartOf="@+id/img_profile"
+        app:layout_constraintTop_toTopOf="@+id/img_profile" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="90dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="86dp"
+        android:background="@drawable/rounded_text"
+        android:backgroundTint="#454545"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:text="Me"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/img_profile"
+        app:layout_constraintStart_toStartOf="@+id/img_profile"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinner_pofile"
+        style="@style/spinner_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="270dp"
+        android:layout_height="310dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_pofile"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/btnHome"
+        style="@style/main_buttons"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="605dp"
+        android:layout_marginEnd="285dp"
+        android:layout_marginBottom="5dp"
+        android:src="@mipmap/ic_btn_home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:contentDescription="@string/home"/>
+
+    <ImageButton
+        android:id="@+id/btnProfile"
+        style="@style/main_buttons"
+        android:layout_marginStart="165dp"
+        android:layout_marginTop="605dp"
+        android:layout_marginEnd="165dp"
+        android:layout_marginBottom="5dp"
+        android:src="@mipmap/ic_btn_profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:contentDescription="@string/profile"/>
+
+    <ImageButton
+        android:id="@+id/btnSetting"
+        style="@style/main_buttons"
+        android:layout_marginStart="285dp"
+        android:layout_marginTop="605dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="5dp"
+        android:src="@mipmap/ic_btn_setting"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:contentDescription="@string/settings"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

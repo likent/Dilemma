@@ -64,7 +64,9 @@
         app:layout_constraintBottom_toTopOf="@+id/btnProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingBottom="90dp"
+        android:paddingTop="100dp"/>
 
     <ImageButton
         android:id="@+id/btnHome"
