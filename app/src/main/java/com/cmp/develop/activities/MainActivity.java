@@ -1,38 +1,47 @@
 package com.cmp.develop.activities;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cmp.GridItem;
+import com.cmp.Profile.ProfileActivity;
+import com.cmp.Setting.SettingActivity;
 import com.cmp.Utils.AutoFitGridLayout;
 import com.cmp.develop.R;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     RecyclerView recyclerView;
 
     ArrayList<ArrayList<GridItem>> gridItems;
     AutoFitGridLayout autoFitGridLayout;
+    ImageButton btnProfile, btnSettings;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        btnProfile = findViewById(R.id.btnProfile);
+        btnSettings = findViewById(R.id.btnSetting);
+        btnProfile.setOnClickListener(this);
+        btnSettings.setOnClickListener(this);
 
 //        Spinner spinner = findViewById(R.id.spinnerType);
 //        String[] arraySpinner = new String[] {
@@ -64,10 +73,20 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(new RVAdapter(gridItems));
 
+    }
 
-        Drawable phone1 = ContextCompat.getDrawable(this, R.mipmap.test_phone_1);
-        Drawable phone2 = ContextCompat.getDrawable(this, R.mipmap.test_phone_2);
-
+    @Override
+    public void onClick(View v) {
+        Intent intent;
+        if(v.getId() == btnSettings.getId()){
+            intent = new Intent(MainActivity.this, SettingActivity.class);
+            startActivity(intent);
+            finish();
+        }else if(v.getId() == btnProfile.getId()){
+            intent = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }
 
@@ -127,7 +146,7 @@ class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
     }
 
-    class DilemmaItemsHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class DilemmaItemsHolder extends RecyclerView.ViewHolder  {
 
         AutoFitGridLayout autoFitGridLayout;
         LayoutInflater inflater;
@@ -151,15 +170,17 @@ class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 imageView.setImageDrawable(itemGridItems.get(i).getImage());
                 autoFitGridLayout.addView(v);
             }
-            autoFitGridLayout.setOnClickListener(this);
+            autoFitGridLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TextView textView = v.findViewById(R.id.item_tv_percent);
+                    textView.setText(100 + "%");
+                    //Toast.makeText(v.getContext(), ) autoFitGridLayout.indexOfChild(v);
+
+                }
+            });
         }
 
-        @Override
-        public void onClick(View v) {
-            TextView textView = v.findViewById(R.id.item_tv_percent);
-            textView.setText(100 + "%");
-            //Toast.makeText(v.getContext(), ) autoFitGridLayout.indexOfChild(v);
 
-        }
     }
 }

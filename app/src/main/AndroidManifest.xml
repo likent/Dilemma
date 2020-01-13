@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.cmp.Profile.ProfileActivity"
+            android:label="Profile"/>
+        <activity android:name="com.cmp.Setting.SettingActivity"
+            android:label="Settings"/>
+        <activity android:name="com.cmp.CreateDilemma.CreateDilemmaActivity"
+            android:label="Create Dilemma"/>
     </application>
 
 </manifest>
