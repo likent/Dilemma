@@ -14,9 +14,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cmp.CreateDilemma.CreateDilemmaActivity;
+import com.cmp.DilemmaItem;
 import com.cmp.GridItem;
 import com.cmp.Setting.SettingActivity;
 import com.cmp.Utils.AutoFitGridLayout;
@@ -25,12 +27,13 @@ import com.cmp.develop.activities.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.UUID;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
     ImageButton btnHome, btnSettings;
     Button btnCreateDilemma;
     RecyclerView recyclerView;
-    ArrayList<ArrayList<GridItem>> createdDillemList;
+    ArrayList<DilemmaItem> createdDillemList;
     AutoFitGridLayout autoFitGridLayout;
 
     @Override
@@ -44,21 +47,23 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         btnHome.setOnClickListener(this);
         btnSettings.setOnClickListener(this);
         recyclerView = findViewById(R.id.recyclerView_profile);
-        autoFitGridLayout = findViewById(R.id.autofit);
+        autoFitGridLayout = findViewById(R.id.main_rv_item_autofitGridLayout);
 
         createdDillemList = new ArrayList<>();
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         Random random = new Random();
+        ArrayList<GridItem> testGridItems;
         for(int i = 0; i < 13; i++){
+            testGridItems = new ArrayList<>();
             int randGridItems = random.nextInt(5)+1;
-            createdDillemList.add(new ArrayList<GridItem>());
             for(int j = 0; j < randGridItems; j++){
                 View v = inflater.inflate(R.layout.item_grid, autoFitGridLayout, false);
-                createdDillemList.get(i).add(new GridItem(v, R.mipmap.test_phone_1, j));
+                testGridItems.add(new GridItem(v, R.mipmap.test_phone_1, j));
             }
+            createdDillemList.add(new DilemmaItem(this, "Choose one", UUID.randomUUID(), testGridItems));
         }
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new ProfileRVAdapter(createdDillemList));
     }
     @Override
@@ -78,24 +83,24 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    class ProfileRVAdapter extends RecyclerView.Adapter{
+    class ProfileRVAdapter extends RecyclerView.Adapter<ProfileRVAdapter.ProfileRVHolder>{
 
-        ArrayList<ArrayList<GridItem>> publishedItems;
+        ArrayList<DilemmaItem> publishedItems;
 
-        public ProfileRVAdapter(ArrayList<ArrayList<GridItem>> publishedItems){
+        public ProfileRVAdapter(ArrayList<DilemmaItem> publishedItems){
             this.publishedItems = publishedItems;
         }
 
         @NonNull
         @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public ProfileRVHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_rv_item, parent, false);
             return new ProfileRVHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ((ProfileRVHolder) holder).bind(publishedItems.get(position));
+        public void onBindViewHolder(@NonNull ProfileRVHolder holder, int position) {
+            holder.bind(publishedItems.get(position).getItemsList());
         }
 
         @Override
@@ -111,30 +116,22 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
             public ProfileRVHolder(@NonNull View itemView) {
                 super(itemView);
-                autoFitGridLayout = itemView.findViewById(R.id.autofit);
+                autoFitGridLayout = itemView.findViewById(R.id.main_rv_item_autofitGridLayout);
                 inflater = LayoutInflater.from(itemView.getContext());
             }
 
-            public void bind(ArrayList<GridItem> itemGridItems){
+            public void bind(final ArrayList<GridItem> itemGridItems){
                 this.itemGridItems = itemGridItems;
                 autoFitGridLayout.removeAllViews();
                 for(int i = 0; i < itemGridItems.size(); i++){
-                    View v = inflater.inflate(R.layout.item_grid, autoFitGridLayout , false);
+                    View v = itemGridItems.get(i).getView();
                     TextView textView = v.findViewById(R.id.item_tv_percent);
                     ImageView imageView = v.findViewById(R.id.item_img);
                     textView.setText(itemGridItems.get(i).getPercent() + "%");
                     imageView.setImageDrawable(itemGridItems.get(i).getImage());
                     autoFitGridLayout.addView(v);
                 }
-                autoFitGridLayout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        TextView textView = v.findViewById(R.id.item_tv_percent);
-                        textView.setText(100 + "%");
-                        //Toast.makeText(v.getContext(), ) autoFitGridLayout.indexOfChild(v);
-
-                    }
-                });
+                autoFitGridLayout.refreshNotGoneChildList();
             }
         }
     }
